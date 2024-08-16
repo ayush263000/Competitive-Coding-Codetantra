@@ -1,0 +1,15 @@
+public static String checkArmstrong(int num)  {
+  String numStr = String.valueOf(num); 
+  int numDigits = numStr.length();
+  int sumOfPowers = 0;
+  for(int i=0;i<numDigits;i++){
+    int digit = Character.getNumericValue(numStr.charAt(i));
+    sumOfPowers += Math.pow(digit, numDigits);
+  }
+
+  if(sumOfPowers == num) {
+    return "yes";
+  }else {
+    return "no";
+  }
+}
