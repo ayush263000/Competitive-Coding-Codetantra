@@ -1,0 +1,4 @@
+if(k == 0) {
+  return 1;
+}
+return (float)(1/Math.pow(2,k)+geometricSum(k-1));
