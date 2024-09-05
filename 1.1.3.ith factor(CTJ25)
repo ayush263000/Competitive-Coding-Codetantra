@@ -1,0 +1,15 @@
+List<Long> factors = new ArrayList<>();
+for (long d = 1; d * d <= n; d++) {
+    if (n % d == 0) {
+        factors.add(d);
+        if (d != n / d) {
+            factors.add(n / d);
+        }
+    }
+}
+Collections.sort(factors);
+if (i <= factors.size()) {
+    return factors.get((int) i - 1);
+} else {
+    return 0;
+}
