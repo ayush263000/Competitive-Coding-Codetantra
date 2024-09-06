@@ -1,0 +1,30 @@
+package q3340;
+
+public class CTJ3340 {
+
+    public static String removeConsecutiveCharacters(String str) {
+        // Write your code here
+        if (str.length() == 0) {
+            return str;
+        }
+
+        StringBuilder result = new StringBuilder();
+        char lastChar = str.charAt(0);
+        result.append(lastChar);
+
+        for (int i = 1; i < str.length(); i++) {
+            char currentChar = str.charAt(i);
+            if (currentChar != lastChar) {
+                lastChar = currentChar;
+                result.append(currentChar);
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = args[0];
+        System.out.println(removeConsecutiveCharacters(str));
+    }
+}
