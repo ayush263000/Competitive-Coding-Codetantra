@@ -1,0 +1,56 @@
+package q13219;
+
+import java.util.*;
+
+public class CTJ13219 {
+
+    public static String findSmallestWindow(String s, String p) {
+        if (s.length() < p.length()) {
+            return "-1";
+        }
+
+        HashMap<Character, Integer> patMap = new HashMap<>();
+        for (char ch : p.toCharArray()) {
+            patMap.put(ch, patMap.getOrDefault(ch, 0) + 1);
+        }
+
+        int start = 0, minLength = Integer.MAX_VALUE, minStart = -1;
+        int count = 0;
+
+        HashMap<Character, Integer> strMap = new HashMap<>();
+        for (int end = 0; end < s.length(); end++) {
+            char endChar = s.charAt(end);
+            strMap.put(endChar, strMap.getOrDefault(endChar, 0) + 1);
+
+            if (patMap.containsKey(endChar) && strMap.get(endChar) <= patMap.get(endChar)) {
+                count++;
+            }
+
+            while (count == p.length()) {
+                if (end - start + 1 < minLength) {
+                    minLength = end - start + 1;
+                    minStart = start;
+                }
+
+                char startChar = s.charAt(start);
+                strMap.put(startChar, strMap.get(startChar) - 1);
+
+                if (patMap.containsKey(startChar) && strMap.get(startChar) < patMap.get(startChar)) {
+                    count--;
+                }
+
+                start++;
+            }
+        }
+
+        return minLength == Integer.MAX_VALUE ? "-1" : s.substring(minStart, minStart + minLength);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        String p = sc.nextLine();
+        System.out.println(findSmallestWindow(s, p));
+        sc.close();
+    }
+}
