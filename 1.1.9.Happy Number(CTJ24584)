@@ -1,0 +1,43 @@
+package q24584;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class CTJ24584 {
+
+    private static int sumOfSquares(int num) {
+        int sum = 0;
+        while (num > 0) {
+            int digit = num % 10;
+            sum += digit * digit;
+            num /= 10;
+        }
+        return sum;
+    }
+
+    private static boolean isHappy(int num) {
+        Set<Integer> seen = new HashSet<>();
+        while (num != 1 && !seen.contains(num)) {
+            seen.add(num);
+            num = sumOfSquares(num);
+        }
+        return num == 1;
+    }
+
+    public static int happyNumbers(int n1, int n2) {
+        // Write your code here
+        int count = 0;
+        for (int i = n1; i <= n2; i++) {
+            if (isHappy(i)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int n1 = Integer.parseInt(args[0]);
+        int n2 = Integer.parseInt(args[1]);
+        System.out.println(happyNumbers(n1, n2));
+    }
+}
