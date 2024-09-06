@@ -1,0 +1,20 @@
+package q23507;
+
+public class CTJ23507 {
+
+    public static boolean isPalindrome(long n) {
+        long original = n;
+        long reverse = 0;
+        while (n > 0) {
+            long lastDigit = n % 10;
+            reverse = reverse * 10 + lastDigit;
+            n /= 10;
+        }
+        return original == reverse;
+    }
+
+    public static void main(String[] args) {
+        long n = Long.parseLong(args[0]);
+        System.out.println(isPalindrome(n));
+    }
+}
