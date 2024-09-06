@@ -1,0 +1,65 @@
+package q13397;
+
+import java.util.*;
+
+public class CTJ13397 {
+
+    private static boolean[] sieve(int limit) {
+        boolean[] isPrime = new boolean[limit + 1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = isPrime[1] = false;
+        for (int i = 2; i * i <= limit; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= limit; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+        return isPrime;
+    }
+
+    public static int countPrimesInRange(int l, int u) {
+        if (l > u) {
+            return 0;
+        }
+
+        if (u < 2) {
+            return 0;
+        }
+
+        if (l < 2) {
+            l = 2;
+        }
+
+        int sqrtu = (int) Math.sqrt(u);
+        boolean[] isPrimeSmall = sieve(sqrtu);
+
+        boolean[] isPrimeRange = new boolean[u - l + 1];
+        Arrays.fill(isPrimeRange, true);
+
+        for (int i = 2; i <= sqrtu; i++) {
+            if (isPrimeSmall[i]) {
+                int start = Math.max(i * i, (l + i - 1) / i);
+                for (int j = start; j <= u; j += i) {
+                    isPrimeRange[j - l] = false;
+                }
+            }
+        }
+
+        int count = 0;
+        for (int i = 0; i < isPrimeRange.length; i++) {
+            if (isPrimeRange[i]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int l = sc.nextInt();
+        int u = sc.nextInt();
+        System.out.println(countPrimesInRange(l, u));
+    }
+}
