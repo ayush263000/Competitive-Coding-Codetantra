@@ -1,0 +1,23 @@
+package q23511;
+
+public class CTJ23511 {
+
+    public static int sumOfFactors(int n) {
+        // Write your code here
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                sum += i;
+                // if (i != n / i) {
+                //     sum += n / i;
+                // }
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int n = Integer.parseInt(args[0]);
+        System.out.println(sumOfFactors(n));
+    }
+}
