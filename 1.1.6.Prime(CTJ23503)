@@ -1,0 +1,62 @@
+package q23503;
+
+import java.util.*;
+
+public class CT323583 {
+
+    public static int prime(int n) {
+        // Write your code here
+        if (n == 1) {
+            return 2;
+        }
+
+        int limit = 12500;
+        boolean[] isPrime = new boolean[limit];
+
+        Arrays.fill(isPrime, true);
+        isPrime[0] = isPrime[1] = false;
+
+        int count = 0;
+        int result = 0;
+
+        for (int i = 2; i < limit; i++) {
+            if (isPrime[i]) {
+                count++;
+                if (count == n) {
+                    result = i;
+                    break;
+                }
+                for (int j = 2 * i; j < limit; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+
+        while (count < n) {
+            limit += 2;
+            isPrime = new boolean[limit];
+            Arrays.fill(isPrime, true);
+            isPrime[0] = isPrime[1] = false;
+            count = 0;
+            for (int i = 2; i < limit; i++) {
+                if (isPrime[i]) {
+                    count++;
+                    if (count == n) {
+                        result = i;
+                        break;
+                    }
+                    for (int j = 2 * i; j < limit; j += i) {
+                        isPrime[j] = false;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int n = Integer.parseInt(args[0]);
+        System.out.println(prime(n));
+    }
+}
