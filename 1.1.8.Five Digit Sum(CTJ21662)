@@ -1,0 +1,20 @@
+package q21662;
+
+public class CTJ21662 {
+
+    public static int reverseFiveDigitNum(int fiveDigitNum) {
+        // Write your code here
+        int reversedNum = 0;
+        for (int i = 0; i < 5; i++) {
+            int lastDigit = fiveDigitNum % 10;
+            reversedNum = reversedNum * 10 + lastDigit;
+            fiveDigitNum /= 10;
+        }
+        return reversedNum;
+    }
+
+    public static void main(String[] args) {
+        int fiveDigitNum = Integer.parseInt(args[0]);
+        System.out.println(reverseFiveDigitNum(fiveDigitNum));
+    }
+}
