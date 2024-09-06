@@ -1,0 +1,23 @@
+package q1555;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ1555 {
+
+    public static List<Integer> reverseArray(List<Integer> Arr) {
+        // Write your code here
+        int n = Arr.size();
+        for (int i = 0; i < n / 2; i++) {
+            int temp = Arr.get(i);
+            Arr.set(i, Arr.get(n - i - 1));
+            Arr.set(n - i - 1, temp);
+        }
+        return Arr;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> Arr = Arrays.stream(args[0].split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        System.out.println(reverseArray(Arr).stream().map(String::valueOf).collect(Collectors.joining(",")));
+    }
+}
