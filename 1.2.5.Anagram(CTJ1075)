@@ -1,0 +1,31 @@
+package q1075;
+
+import java.util.*;
+
+public class CTJ1075 {
+
+    public static String AnagramCheck(String Str1, String Str2) {
+        // Write your code here
+        if (Str1.length() != Str2.length()) {
+            return "Not Anagram";
+        }
+
+        char[] Array1 = Str1.toCharArray();
+        char[] Array2 = Str2.toCharArray();
+
+        Arrays.sort(Array1);
+        Arrays.sort(Array2);
+
+        if (Arrays.equals(Array1, Array2)) {
+            return "Anagram";
+        } else {
+            return "Not Anagram";
+        }
+    }
+
+    public static void main(String[] args) {
+        String Str1 = args[0];
+        String Str2 = args[1];
+        System.out.println(AnagramCheck(Str1, Str2));
+    }
+}
