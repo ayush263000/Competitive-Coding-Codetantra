@@ -1,0 +1,25 @@
+package q1557;
+
+public class CTJ1557 {
+
+    public static String palindrome(String str) {
+        // Write your code here
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return "Not a palindrome";
+            }
+            left++;
+            right--;
+        }
+
+        return "Palindrome";
+    }
+
+    public static void main(String[] args) {
+        String str = args[0];
+        System.out.println(palindrome(str));
+    }
+}
