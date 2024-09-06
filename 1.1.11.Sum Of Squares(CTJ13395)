@@ -1,0 +1,31 @@
+package q13395;
+
+import java.util.*;
+
+public class CTJ13395 {
+
+    private static int sumOfSquares(int num) {
+        int sum = 0;
+        while (num > 0) {
+            int digit = num % 10;
+            sum += digit * digit;
+            num /= 10;
+        }
+        return sum;
+    }
+
+    public static String isFavoriteNumber(int num) {
+        Set<Integer> seenNumbers = new HashSet<>();
+        while (num != 1 && !seenNumbers.contains(num)) {
+            seenNumbers.add(num);
+            num = sumOfSquares(num);
+        }
+        return num == 1 ? "Yes" : "No";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        System.out.println(isFavoriteNumber(num));
+    }
+}
