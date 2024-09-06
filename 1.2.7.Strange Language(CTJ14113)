@@ -1,0 +1,34 @@
+package q14113;
+
+import java.util.*;
+
+public class CTJ14113 {
+
+    public static void largestRotation(String s) {
+        int n = s.length();
+
+        int maxIndex = 0;
+        for (int i = 1; i < n; i++) {
+            if (s.substring(i, i + n).compareTo(s.substring(maxIndex, maxIndex + n)) > 0) {
+                maxIndex = i;
+            }
+        }
+
+        System.out.println(s.substring(maxIndex, maxIndex + n));
+    }
+
+    public static void main(String[] args) {
+        Scanner scanne = new Scanner(System.in);
+        int n = scanne.nextInt();
+
+        String[] a = new String[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = scanne.nextLine();
+        }
+
+        for (int i = 0; i < n; i++) {
+            largestRotation(a[i]);
+        }
+    }
+}
