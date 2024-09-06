@@ -1,0 +1,36 @@
+package q33;
+
+public class CTJ33 {
+
+    public static int MagicString(String S) {
+        // Write your code here
+        int mCount = 0, nCount = 0, oCount = 0, pCount = 0;
+        for (char ch : S.toCharArray()) {
+            switch (ch) {
+                case 'm':
+                    mCount++;
+                    break;
+                case 'n':
+                    nCount++;
+                    break;
+                case 'o':
+                    oCount++;
+                    break;
+                case 'p':
+                    pCount++;
+                    break;
+            }
+        }
+
+        if ((mCount + oCount) % 2 == 0 && (nCount + pCount) % 2 == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        String S = args[0];
+        System.out.println(MagicString(S));
+    }
+}
