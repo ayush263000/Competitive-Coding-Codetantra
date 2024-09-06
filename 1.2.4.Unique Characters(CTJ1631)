@@ -1,0 +1,27 @@
+package q1631;
+
+import java.util.*;
+
+public class CTJ1631 {
+
+    public static String uniqueCharacters(String str) {
+        // Write your code here
+        HashSet<Character> seen = new HashSet<>();
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < str.length(); i++) {
+            char currChar = str.charAt(i);
+            if (!seen.contains(currChar)) {
+                seen.add(currChar);
+                result.append(currChar);
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = args[0];
+        System.out.println(uniqueCharacters(str));
+    }
+}
