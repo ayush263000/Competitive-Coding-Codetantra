@@ -1,0 +1,41 @@
+package q13427;
+
+import java.util.*;
+
+public class CTJ13427 {
+
+    public static int nearestPowerOfTwo(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("");
+        }
+
+        int lowerPower = 1;
+        while (lowerPower * 2 < n) {
+            lowerPower *= 2;
+        }
+
+        int higherPower = lowerPower * 2;
+        int distanceToLower = Math.abs(n - lowerPower);
+        int distanceToHigher = Math.abs(n - higherPower);
+
+        if (distanceToLower == distanceToHigher) {
+            return lowerPower;
+        } else if (distanceToLower < distanceToHigher) {
+            return lowerPower;
+        } else {
+            return higherPower;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            int n = sc.nextInt();
+            System.out.println(nearestPowerOfTwo(n));
+        } catch (Exception e) {
+            System.out.println("");
+        } finally {
+            sc.close();
+        }
+    }
+}
