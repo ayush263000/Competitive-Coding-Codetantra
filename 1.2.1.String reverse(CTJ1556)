@@ -1,0 +1,16 @@
+package q1556;
+
+public class CTJ1556 {
+
+    public static String stringReverse(String str) {
+        // Write your code here
+        StringBuilder reverseString = new StringBuilder(str);
+        reverseString.reverse();
+        return reverseString.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = args[0];
+        System.out.println(stringReverse(str));
+    }
+}
