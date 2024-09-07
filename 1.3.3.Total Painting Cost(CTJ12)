@@ -1,0 +1,29 @@
+package q12;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ12 {
+
+    public static float TotalPaintingCost(int M, int N, List<Float> SurfaceAreaOfWalls) {
+        float totalcost = 0;
+        for (int i = 0; i < M; i++) {
+            totalcost += SurfaceAreaOfWalls.get(i) * 20;
+        }
+
+        for (int i = M; i < M + N; i++) {
+            totalcost += SurfaceAreaOfWalls.get(i) * 15;
+        }
+
+        return totalcost;
+    }
+
+    public static void main(String[] args) {
+        int M = Integer.parseInt(args[0]);
+        int N = Integer.parseInt(args[1]);
+        List<Float> SurfaceAreaOfWalls = Arrays.stream(args[2].split(","))
+                                              .map(s -> Float.parseFloat(s))
+                                              .collect(Collectors.toList());
+        System.out.println(String.format("%1.6e", TotalPaintingCost(M, N, SurfaceAreaOfWalls)));
+    }
+}
