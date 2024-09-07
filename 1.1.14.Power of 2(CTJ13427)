@@ -18,10 +18,10 @@ public class CTJ13427 {
         int distanceToLower = Math.abs(n - lowerPower);
         int distanceToHigher = Math.abs(n - higherPower);
 
-        if (distanceToLower == distanceToHigher) {
+        if (distanceToLower < distanceToHigher) {
             return lowerPower;
-        } else if (distanceToLower < distanceToHigher) {
-            return lowerPower;
+        } else if (distanceToHigher > distanceToLower) {
+            return higherPower;
         } else {
             return higherPower;
         }
