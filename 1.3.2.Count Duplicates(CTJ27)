@@ -1,0 +1,31 @@
+package q27;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ27 {
+
+    public static int countDuplicates(List<Integer> Arr) {
+        // Write your code here
+        HashMap<Integer, Integer> fMap = new HashMap<>();
+        for (int num : Arr) {
+            fMap.put(num, fMap.getOrDefault(num, 0) + 1);
+        }
+
+        int nonUniqueCount = 0;
+        for (int freq : fMap.values()) {
+            if (freq > 1) {
+                nonUniqueCount++;
+            }
+        }
+
+        return nonUniqueCount;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> Arr = Arrays.stream(args[0].split(","))
+                                .map(s -> Integer.parseInt(s))
+                                .collect(Collectors.toList());
+        System.out.println(countDuplicates(Arr));
+    }
+}
