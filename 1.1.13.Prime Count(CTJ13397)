@@ -39,7 +39,7 @@ public class CTJ13397 {
 
         for (int i = 2; i <= sqrtu; i++) {
             if (isPrimeSmall[i]) {
-                int start = Math.max(i * i, (l + i - 1) / i);
+                int start = Math.max(i * i, (l + i - 1) / i*i);
                 for (int j = start; j <= u; j += i) {
                     isPrimeRange[j - l] = false;
                 }
