@@ -3,10 +3,10 @@ package q14113;
 import java.util.*;
 
 public class CTJ14113 {
-
+    static Scanner scanne = new Scanner(System.in);
     public static void largestRotation(String s) {
         int n = s.length();
-
+        s += s;
         int maxIndex = 0;
         for (int i = 1; i < n; i++) {
             if (s.substring(i, i + n).compareTo(s.substring(maxIndex, maxIndex + n)) > 0) {
@@ -18,9 +18,8 @@ public class CTJ14113 {
     }
 
     public static void main(String[] args) {
-        Scanner scanne = new Scanner(System.in);
         int n = scanne.nextInt();
-
+        scanne.nextLine();
         String[] a = new String[n];
 
         for (int i = 0; i < n; i++) {
