@@ -1,0 +1,34 @@
+package q29;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ29 {
+
+    public static int CountTrips(List<Float> weight) {
+        // Write your code here
+        Collections.sort(weight);
+
+        int left = 0;
+        int right = weight.size() - 1;
+
+        int trips = 0;
+
+        while (left <= right) {
+            if (weight.get(left) + weight.get(right) <= 3.0) {
+                left++;
+                right--;
+                trips++;
+            }
+        }
+
+        return trips;
+    }
+
+    public static void main(String[] args) {
+        List<Float> weight = Arrays.stream(args[0].split(","))
+                                 .map(s -> Float.parseFloat(s))
+                                 .collect(Collectors.toList());
+        System.out.println(CountTrips(weight));
+    }
+}
