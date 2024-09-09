@@ -1,43 +1,49 @@
-package q13212;
-
+package Q13212;
 import java.util.*;
 
-public class CTJ13212 {
+class CTJ13212 {
+    
+    public static int maxSubset(int[] arr, int n) {
+        int idx = 0;  // Current index in the array
 
-    public static int maxSubset(int[] a, int n) {
-        int idx = 0;
-
+        // Iterate over all bits from the most significant (31) to the least significant (0)
         for (int i = 31; i >= 0; i--) {
             int maxIdx = idx;
             int maxElement = Integer.MIN_VALUE;
 
+            // Find the maximum element with the i-th bit set
             for (int j = idx; j < n; j++) {
-                if ((a[j] & (1 << i)) != 0 && a[j] > maxElement) {
-                    maxElement = a[j];
+                if ((arr[j] & (1 << i)) != 0 && arr[j] > maxElement) {
+                    maxElement = arr[j];
                     maxIdx = j;
                 }
             }
 
+            // If no element found with the i-th bit set, continue to the next bit
             if (maxElement == Integer.MIN_VALUE) {
                 continue;
             }
 
-            int temp = a[idx];
-            a[idx] = a[maxIdx];
-            a[maxIdx] = temp;
+            // Swap the max element found with the current index element
+            int temp = arr[idx];
+            arr[idx] = arr[maxIdx];
+            arr[maxIdx] = temp;
 
+            // XOR all elements with the current index's element if they have the i-th bit set
             for (int j = 0; j < n; j++) {
-                if (j != maxIdx && (a[j] & (1 << i)) != 0) {
-                    a[j] ^= a[maxIdx];
+                if (j != idx && (arr[j] & (1 << i)) != 0) {
+                    arr[j] ^= arr[idx];
                 }
             }
 
+            // Move to the next index
             idx++;
         }
 
+        // XOR all the elements to get the result
         int result = 0;
         for (int i = 0; i < n; i++) {
-            result ^= a[i];
+            result ^= arr[i];
         }
 
         return result;
@@ -45,16 +51,11 @@ public class CTJ13212 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         int n = sc.nextInt();
-        int[] a = new int[n];
-
+        int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            a[i] = sc.nextInt();
+            arr[i] = sc.nextInt();
         }
-
-        int xor = maxSubset(a, n);
-
-        System.out.println(xor);
+        System.out.println(maxSubset(arr, n));
     }
 }
