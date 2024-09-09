@@ -1,0 +1,34 @@
+package q3666;
+
+import java.util.*;
+
+public class CTJ3666 {
+
+    public static String highestFrequency(String str) {
+        // Write your code here
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (char c : str.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        int maxFq = 0;
+        for (int freq : map.values()) {
+            if (freq > maxFq) {
+                maxFq = freq;
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == maxFq) {
+                result.append(entry.getKey());
+            }
+        }
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = args[0];
+        System.out.println(highestFrequency(str));
+    }
+}
