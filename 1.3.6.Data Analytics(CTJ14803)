@@ -1,0 +1,30 @@
+package q14803;
+
+import java.util.*;
+
+public class CTJ14803 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        long sum = 0;
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+            sum += a[i];
+        }
+
+        int minPossible = (int) ((sum + n - 1) / n);
+        int ans = Integer.MAX_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            if (a[i] >= minPossible && a[i] < ans) {
+                ans = a[i];
+            }
+        }
+
+        System.out.println(ans);
+    }
+}
