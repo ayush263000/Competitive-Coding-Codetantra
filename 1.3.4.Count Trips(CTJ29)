@@ -17,11 +17,10 @@ public class CTJ29 {
         while (left <= right) {
             if (weight.get(left) + weight.get(right) <= 3.0) {
                 left++;
-                right--;
-                trips++;
             }
+            right--;
+            trips++;
         }
-
         return trips;
     }
 
