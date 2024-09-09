@@ -1,0 +1,37 @@
+package q14112;
+
+import java.util.*;
+
+public class CTJ14112 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[] diff = new int[n + 1];
+
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int v = sc.nextInt();
+
+            diff[a - 1] += v;
+            if (b < n) {
+                diff[b] -= v;
+            }
+        }
+
+        int max = Integer.MIN_VALUE;
+        int current = 0;
+
+        for (int i = 0; i < n; i++) {
+            current += diff[i];
+            if (current > max) {
+                max = current;
+            }
+        }
+
+        System.out.println(max);
+    }
+}
