@@ -1,0 +1,48 @@
+package q9787;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CT9787 {
+
+    private static boolean isPossible(int m, List<Integer> ranks, int time) {
+        // Write your code here
+        int pizzasMade = 0;
+        for (int rank : ranks) {
+            int timeTaken = 0;
+            int k = 1;
+            while (timeTaken + k * rank <= time) {
+                timeTaken += k * rank;
+                pizzasMade += 1;
+                k += 1;
+                if (pizzasMade >= m) {
+                    return true;
+                }
+            }
+        }
+        return pizzasMade >= m;
+    }
+
+    public static int minimumTimeToCompleteTheOrder(int m, List<Integer> ranks) {
+        // Write your code here
+        int low = 1;
+        int high = ranks.get(0) * m * (m + 1) / 2;
+
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (isPossible(m, ranks, mid)) {
+                high = mid;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return low;
+    }
+
+    public static void main(String[] args) {
+        int m = Integer.parseInt(args[0]);
+        List<Integer> ranks = Arrays.stream(args[1].split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        System.out.println(minimumTimeToCompleteTheOrder(m, ranks));
+    }
+}
