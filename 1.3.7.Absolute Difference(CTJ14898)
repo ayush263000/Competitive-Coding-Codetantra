@@ -1,0 +1,38 @@
+package q14898;
+
+import java.util.*;
+
+public class CTJ14898 {
+
+    public static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        int gcdValue = a[0];
+        for (int i = 1; i < n; i++) {
+            gcdValue = gcd(gcdValue, a[i]);
+        }
+
+        int maxElement = a[0];
+        for (int i = 1; i < n; i++) {
+            if (a[i] > maxElement) {
+                maxElement = a[i];
+            }
+        }
+
+        int result = maxElement / gcdValue;
+        System.out.println(result);
+    }
+}
