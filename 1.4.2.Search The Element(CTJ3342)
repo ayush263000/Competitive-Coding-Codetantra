@@ -1,0 +1,38 @@
+package q1342;
+
+import java.util.stream.*;
+
+public class CT1342 {
+    public static List<Integer> searchTheElement(List<Integer> Arr, List<Integer> e) {
+        // Write your code here
+        List<Integer> result = new ArrayList<>();
+        for (int element : e) {
+            int idx = binarySearch(Arr, element);
+            result.add(idx);
+        }
+        return result;
+    }
+
+    private static int binarySearch(List<Integer> Arr, int target) {
+        int low = 0;
+        int high = Arr.size() - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (Arr.get(mid) == target) {
+                return mid;
+            } else if (Arr.get(mid) < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> Arr = Arrays.stream(args[0].split(",")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> e = Arrays.stream(args[1].split(",")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> result = searchTheElement(Arr, e);
+        System.out.println(result.stream().map(String::valueOf).collect(Collectors.joining(",")));
+    }
+}
