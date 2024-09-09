@@ -1,0 +1,29 @@
+package q1638;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ1638 {
+
+    public static int majorityFind(List<Integer> Arr) {
+        // Write your code here
+        int n = Arr.size();
+
+        int majority = (int) Math.ceil(n / 2.0);
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : Arr) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+            if (map.get(num) >= majority) {
+                return num;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> Arr = Arrays.stream(args[0].split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        System.out.println(majorityFind(Arr));
+    }
+}
