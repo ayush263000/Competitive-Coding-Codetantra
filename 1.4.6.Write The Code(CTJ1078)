@@ -1,0 +1,31 @@
+package q1078;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ1078 {
+
+    public static float FindTheMedian(List<Integer> Arr, List<Integer> Brr) {
+        // Write your code here
+        List<Integer> list = new ArrayList<>(Arr);
+        list.addAll(Brr);
+
+        Collections.sort(list);
+        int n = list.size();
+
+        if (n % 2 == 0) {
+            int m1 = list.get(n / 2 - 1);
+            int m2 = list.get(n / 2);
+            return (m1 + m2) / 2.0f;
+        } else {
+            return list.get(n / 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Integer> Arr = Arrays.stream(args[0].split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        List<Integer> Brr = Arrays.stream(args[1].split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+
+        System.out.println(String.format("%1.6e", FindTheMedian(Arr, Brr)));
+    }
+}
