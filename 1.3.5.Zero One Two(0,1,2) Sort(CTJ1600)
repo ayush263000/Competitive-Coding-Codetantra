@@ -1,0 +1,55 @@
+package q1600;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class CTJ1600 {
+
+    public static List<Short> zeroTwoSort(List<Short> Arr) {
+        // Write your code here
+
+        int n = Arr.size();
+        for (short num : Arr) {
+
+            if (num < 0 || num > 2) {
+                List<Short> invalid = new ArrayList<>();
+                invalid.add((short) -1);
+                return invalid;
+            }
+        }
+
+        int count0 = 0, count1 = 0, count2 = 0;
+        for (short num : Arr) {
+
+            switch (num) {
+                case 0:
+                    count0++;
+                    break;
+                case 1:
+                    count1++;
+                    break;
+                case 2:
+                    count2++;
+                    break;
+            }
+        }
+
+        List<Short> sot = new ArrayList<>(n);
+        for (int i = 0; i < count0; i++) {
+            sot.add((short) 0);
+        }
+        for (int i = 0; i < count1; i++) {
+            sot.add((short) 1);
+        }
+        for (int i = 0; i < count2; i++) {
+            sot.add((short) 2);
+        }
+
+        return sot;
+    }
+
+    public static void main(String[] args) {
+        List<Short> Arr = Arrays.stream(args[0].split(",")).map(s -> Short.parseShort(s)).collect(Collectors.toList());
+        System.out.println(zeroTwoSort(Arr).stream().map(String::valueOf).collect(Collectors.joining(",")));
+    }
+}
