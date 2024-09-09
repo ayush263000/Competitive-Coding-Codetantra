@@ -1,0 +1,17 @@
+package q1074;
+
+import java.util.stream.*;
+
+public class CT1074 {
+    public static int MthSmallestElement(List<Integer> Arr, int M) {
+        // Write your code here
+        Collections.sort(Arr);
+        return Arr.get(M - 1);
+    }
+
+    public static void main(String[] args) {
+        List<Integer> Arr = Arrays.stream(args[0].split(",")).map(Integer::parseInt).collect(Collectors.toList());
+        int M = Integer.parseInt(args[1]);
+        System.out.println(MthSmallestElement(Arr, M));
+    }
+}
